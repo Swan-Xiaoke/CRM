@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+    <include file="struts2/department.xml"/>
+    <include file="struts2/post.xml"/>
+    <include file="struts2/staff.xml"/>
+
+    <package name="base-default" extends="json-default">
+        <default-class-ref class="staffAction"/>
+
+        <!--登录-->
+        <action name="staffAction_login"
+                method="login">
+            <result name="success">/WEB-INF/pages/frame.jsp</result>
+            <result name="input">/WEB-INF/pages/login.jsp</result>
+        </action>
+
+        <!--通配符页面跳转-->
+        <action name="UIAction_*_*"
+                method="jump">
+            <result name="success">/WEB-INF/pages/{1}/{2}.jsp</result>
+        </action>
+
+        <!--更改密码-->
+        <action name="changePwd"
+                method="changePwd">
+            <result name="success">/WEB-INF/pages/frame/top.jsp</result>
+            <result name="input">/WEB-INF/pages/staff/updPwd.jsp</result>
+        </action>
+    </package>
+
+</struts>

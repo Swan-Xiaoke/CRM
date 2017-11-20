@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="staff" extends="base-default">
+        <default-class-ref class="staffAction"/>
+
+        <action name="staffAction_addStaffPre"
+                method="addStaff">
+            <result name="error">/WEB-INF/pages/staff/addStaff.jsp</result>
+            <result name="success">/WEB-INF/pages/staff/listStaff.jsp</result>
+        </action>
+
+        <!--跳转页面-->
+        <action name="jumpAction"
+                method="jump">
+            <result name="success">/WEB-INF/pages/staff/addStaff.jsp</result>
+        </action>
+
+        <!--保存员工-->
+        <action name="addStaff"
+                method="addStaff">
+            <result name="success" type="chain">staffAction_findAll</result>
+            <result name="input">/WEB-INF/pages/staff/addStaff.jsp</result>
+        </action>
+
+        <!--查询所有员工-->
+        <action name="staffAction_findAll"
+                method="allStaff">
+            <result type="chain">allDept</result>
+        </action>
+
+        <!--高级查询信息-->
+        <action name="staffAction_queryInfo"
+                method="expertFind">
+            <result name="success">/WEB-INF/pages/staff/listStaff.jsp</result>
+        </action>
+
+        <!--查询所有部门-->
+        <action name="allDept"
+                method="allDepartment">
+            <result name="success">/WEB-INF/pages/staff/listStaff.jsp</result>
+        </action>
+
+        <!--查询所有职务-->
+        <action name="allPost"
+                method="allPost">
+            <result name="success" type="json">
+                <param name="root">posts</param>
+            </result>
+        </action>
+
+        <!--修改密码-->
+        <action name="staffAction_updPwd"
+                method="changePwd">
+            <result name="success">/WEB-INF/pages/staff/updPwd.jsp</result>
+        </action>
+
+        <!--返回登录-->
+        <action name="returnAction"
+                method="jump">
+            <result name="success">/WEB-INF/pages/login.jsp</result>
+        </action>
+
+        <!--添加员工-->
+        <action name="AddStaff"
+                method="allDepartment">
+            <result name="success">/WEB-INF/pages/staff/addStaff.jsp</result>
+        </action>
+
+        <!--编辑员工-->
+        <action name="editStaff"
+                method="allDepartment">
+            <result name="success" type="chain">nextEditStaff</result>
+        </action>
+
+        <action name="nextEditStaff"
+                method="findStaffById">
+            <result name="success">/WEB-INF/pages/staff/editStaff.jsp</result>
+        </action>
+
+        <!--保存编辑后的员工信息-->
+        <action name="saveStaff"
+                method="saveStaff">
+            <result name="success" type="chain">staffAction_findAll</result>
+            <result name="input">/WEB-INF/pages/staff/editStaff.jsp</result>
+        </action>
+
+        <!--级联查询所有部门-->
+        <action name="departmentAction_findAll"
+                method="allDepartment">
+            <result name="success" type="json">
+                <param name="root">departments</param>
+            </result>
+        </action>
+
+    </package>
+</struts>

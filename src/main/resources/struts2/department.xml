@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="department" extends="base-default">
+        <default-class-ref class="departmentAction"/>
+
+
+        <!--查询所有部门-->
+        <action name="findAllDept"
+                method="findAllDept">
+            <result name="success">/WEB-INF/pages/department/listDepartment.jsp</result>
+        </action>
+
+        <!--跳转到添加部门页-->
+        <action name="departmentAction_addOrEditPre"
+                method="jump">
+            <result name="success">/WEB-INF/pages/department/addOrEditDepartment.jsp</result>
+        </action>
+
+        <!--添加员工信息-->
+        <action name="departmentAction_addOrEdit"
+                method="saveOrUpdateDept">
+            <result name="success" type="redirectAction">findAllDept</result>
+            <result name="input">/WEB-INF/pages/department/addOrEditDepartment.jsp</result>
+        </action>
+
+         <!--编辑员工信息-->
+        <action name="departmentAction_EditPre"
+                method="jump">
+            <result name="success">/WEB-INF/pages/department/addOrEditDepartment.jsp</result>
+        </action>
+    </package>
+</struts>

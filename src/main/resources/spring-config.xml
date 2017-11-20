@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--扫描-->
+    <context:component-scan base-package="com.swan.HRD"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--配置数据库四大参数-->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+
+    <!--配置切面-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--配置顾问-->
+    <tx:advice id="staffAdvisor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切面-->
+    <aop:config>
+        <!--声明切点-->
+        <aop:pointcut id="staffPointCut" expression="execution(* com.swan.HRD.*.dao.impl.*.*(..))"/>
+        <!--配置顾问-->
+        <aop:advisor advice-ref="staffAdvisor" pointcut-ref="staffPointCut"/>
+    </aop:config>
+
+    <!--创建staff对象-->
+    <bean id="staffDao" class="com.swan.HRD.staff.dao.impl.StaffDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="staffService" class="com.swan.HRD.staff.service.impl.StaffServiceImpl">
+        <property name="staffDao" ref="staffDao"/>
+    </bean>
+
+    <bean id="staffAction" class="com.swan.HRD.staff.action.StaffAction" scope="prototype">
+        <property name="service" ref="staffService"/>
+    </bean>
+
+    <!--创建Dept对象-->
+    <bean id="deptDao" class="com.swan.HRD.department.dao.impl.DepartmentImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="deptService" class="com.swan.HRD.department.service.impl.DeptServiceImpl">
+        <property name="deptDao" ref="deptDao"/>
+    </bean>
+
+    <bean id="departmentAction" class="com.swan.HRD.department.action.DepartmentAction" scope="prototype">
+        <property name="service" ref="deptService"/>
+    </bean>
+
+ <!--创建Post对象-->
+    <bean id="postDao" class="com.swan.HRD.post.dao.impl.PostDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="postService" class="com.swan.HRD.post.service.impl.PostServiceImpl">
+        <property name="postDao" ref="postDao"/>
+    </bean>
+
+    <bean id="postAction" class="com.swan.HRD.post.action.PostAction" scope="prototype">
+        <property name="service" ref="postService"/>
+        <property name="deptService" ref="deptService"/>
+    </bean>
+
+</beans>

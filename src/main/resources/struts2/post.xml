@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <!--所有的类去引用spring配置中的对象-->
+<package name="post" extends="base-default">
+    <default-class-ref class="postAction"/>
+
+    <!--添加职务-->
+    <action name="postAction_addOrEditPre"
+            method="jump">
+        <result name="success">/WEB-INF/pages/post/addOrEditPost.jsp</result>
+    </action>
+
+    <!--查询出所有职务-->
+    <action name="postAction_findAll"
+            method="allPost">
+        <result name="success">/WEB-INF/pages/post/listPost.jsp</result>
+    </action>
+
+    <!--根据条件查询职务-->
+    <action name="showPost"
+            method="findPostByDepId">
+        <result name="success" type="json">
+            <param name="root">posts</param>
+        </result>
+    </action>
+
+    <!--保存或更新职务-->
+    <action name="postAction_addPre"
+            method="save">
+        <result name="success" type="redirectAction">postAction_findAll</result>
+        <result name="input">/WEB-INF/pages/post/addOrEditPost.jsp</result>
+    </action>
+
+</package>
+</struts>

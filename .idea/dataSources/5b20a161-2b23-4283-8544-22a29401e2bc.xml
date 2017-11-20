@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - crm@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="crm">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="bookstore"/>
+    <schema id="3" name="casino"/>
+    <schema id="4" name="Customer"/>
+    <schema id="5" name="Day13SSH"/>
+    <schema id="6" name="emp"/>
+    <schema id="7" name="exam"/>
+    <schema id="8" name="hibernate"/>
+    <schema id="9" name="information_schema"/>
+    <schema id="10" name="mysql"/>
+    <schema id="11" name="performance_schema"/>
+    <schema id="12" name="sys"/>
+    <table id="13" parent="1" name="crm_department"/>
+    <table id="14" parent="1" name="crm_post"/>
+    <table id="15" parent="1" name="crm_staff"/>
+    <table id="16" parent="1" name="crm_classes"/>
+    <table id="17" parent="1" name="crm_course_type"/>
+    <table id="18" parent="1" name="crm_refer"/>
+    <table id="19" parent="1" name="crm_follow"/>
+    <column id="20" parent="13" name="depId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="21" parent="13" name="depName">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <key id="22" parent="13" name="PRIMARY">
+      <columns>depId</columns>
+      <primary>1</primary>
+    </key>
+    <column id="23" parent="14" name="postId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="24" parent="14" name="postName">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="25" parent="14" name="depId">
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <key id="26" parent="14" name="PRIMARY">
+      <columns>postId</columns>
+      <primary>1</primary>
+    </key>
+    <column id="27" parent="15" name="staffId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="28" parent="15" name="loginName">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="29" parent="15" name="loginPwd">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="30" parent="15" name="staffName">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="31" parent="15" name="gender">
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="32" parent="15" name="onDutyDate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="33" parent="15" name="postId">
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <key id="34" parent="15" name="PRIMARY">
+      <columns>staffId</columns>
+      <primary>1</primary>
+    </key>
+    <column id="35" parent="16" name="classID">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="36" parent="16" name="lessonTypeID">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="37" parent="16" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="38" parent="16" name="beginTime">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="39" parent="16" name="endTime">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="40" parent="16" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="41" parent="16" name="totalCount">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="42" parent="16" name="upgradeCount">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="43" parent="16" name="changeCount">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="44" parent="16" name="runoffCount">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="45" parent="16" name="remark">
+      <mandatory>1</mandatory>
+      <data-type>varchar(500)|0</data-type>
+    </column>
+    <column id="46" parent="16" name="uploadPath">
+      <mandatory>1</mandatory>
+      <data-type>varchar(500)|0</data-type>
+    </column>
+    <column id="47" parent="16" name="uploadFileName">
+      <mandatory>1</mandatory>
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="48" parent="16" name="uploadTime">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <key id="49" parent="16" name="PRIMARY">
+      <columns>classID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="50" parent="17" name="courseTypeID">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="51" parent="17" name="courseCost">
+      <mandatory>1</mandatory>
+      <data-type>double|0</data-type>
+    </column>
+    <column id="52" parent="17" name="total">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="53" parent="17" name="courseName">
+      <mandatory>1</mandatory>
+      <data-type>varchar(500)|0</data-type>
+    </column>
+    <column id="54" parent="17" name="remark">
+      <mandatory>1</mandatory>
+      <data-type>varchar(5000)|0</data-type>
+    </column>
+    <key id="55" parent="17" name="PRIMARY">
+      <columns>courseTypeID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="56" parent="18" name="referId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="57" parent="18" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="58" parent="18" name="telephone">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="59" parent="18" name="qq">
+      <mandatory>1</mandatory>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="60" parent="18" name="createDate">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="61" parent="18" name="intentionLevel">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="62" parent="18" name="courseTypeId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="63" parent="18" name="classId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="64" parent="18" name="source">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="65" parent="18" name="status">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="66" parent="18" name="remark">
+      <mandatory>1</mandatory>
+      <data-type>varchar(500)|0</data-type>
+    </column>
+    <column id="67" parent="18" name="staffId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <key id="68" parent="18" name="PRIMARY">
+      <columns>referId</columns>
+      <primary>1</primary>
+    </key>
+    <column id="69" parent="19" name="followId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="70" parent="19" name="followTime">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="71" parent="19" name="content">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="72" parent="19" name="staffID">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <column id="73" parent="19" name="referId">
+      <mandatory>1</mandatory>
+      <data-type>varchar(32)|0</data-type>
+    </column>
+    <key id="74" parent="19" name="PRIMARY">
+      <columns>followId</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

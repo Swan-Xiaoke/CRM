@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.swan.HRD.staff.domain.Staff" table="crm_staff">
+        <id name="staffId">
+            <generator class="uuid"/>
+        </id>
+        <property name="LoginName"/>
+        <property name="LoginPwd"/>
+        <property name="staffName"/>
+        <property name="gender"/>
+        <property name="onDutyDate"/>
+
+        <!--多对一单向关联-->
+        <many-to-one name="post"
+                     class="com.swan.HRD.post.domain.Post"
+                     column="postId"
+                     lazy="false"/>
+    </class>
+</hibernate-mapping>
